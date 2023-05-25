@@ -1,9 +1,9 @@
 import './style.css'
 import * as Tone from 'tone'
-import { Loop } from 'tone';
+
 
 // Constants for the number of vertical areas and motion threshold
-const NUM_AREAS = 6;
+const NUM_AREAS = 3;
 const MOTION_THRESHOLD = 300;
 
 // Variables for the canvas, context, and video
@@ -23,9 +23,9 @@ let audioElements = [];
 
 // Array to keep track of whether there is motion in each area
 let motionDetected = new Array(NUM_AREAS).fill(false);
-const synths = [];
+
 for (let i = 0; i < motionDetected.length; i++) {
-  synths[i] = new Tone.Synth().toDestination();
+  
 }
 const loops = [];
 
@@ -64,6 +64,7 @@ navigator.mediaDevices.getUserMedia({ video: true })
       function draw() {
         // Draw the current video frame onto the canvas
         ctx.drawImage(video, 0, 0, canvasWidth, canvasHeight);
+        
 
         // Loop through each vertical area
         for (let i = 0; i < NUM_AREAS; i++) {
@@ -79,8 +80,28 @@ navigator.mediaDevices.getUserMedia({ video: true })
             if (diff > MOTION_THRESHOLD) {
               motion++;
             }
+          } if (motion > 0) {
+            motionDetected[i] = true;
           }
-
+          for (let i = 0; i < motionDetected.length; i++) {
+            // 
+            if (motionDetected[i]) {
+              const audio = new Audio(`AUDIO/audio_${i+1}.mp3`);
+              audioElements.push(audio);
+              
+            }
+          }
+          
+          /*audio.addEventListener('ended', function() {
+            // Find the index of the audio element in the array
+            const index = audioElements.indexOf(audio);
+            
+            // Remove the audio element from the array
+            if (index !== -1) {
+              audioElements.splice(index, 1);
+            }
+          });*/
+          
           // Output the area number where motion was detected
           if (cooldown <= 0)
           if (motion > 0) {
@@ -92,42 +113,27 @@ navigator.mediaDevices.getUserMedia({ video: true })
             
           
             // create a loop for each area with motion detected
-            for (let i = 0; i < motionDetected.length; i++) {
-              if (motionDetected[i]) {
-                if (loops[i]) loops[i].stop()
-                loops[i] = new Tone.Loop(time => {
-                  synths[i].triggerAttackRelease("C"+i*1, "8n", time);
-                }, "4n").start(0);
-              }
-            }
-  
-          
-          
-             
-
-            } else {
-              motionDetected[i] = false;
-              if (loops[i]) {
-                loops[i].stop()
-                loops[i] = null
-              }
-              
-            }
-          else {
-            cooldown--;
-          }
-          
-          for (let i = 0; i < audioElements.length; i++) {
-            if (motionDetected[i]) {
-              if (audioElements[i].paused) {
            
-              }
-            } else {
-              if (!audioElements[i].paused) {
-                audioElements[i].pause();
-              }
+  
+           } else {
+            motionDetected[i] = false;
+          }
+        else {
+          cooldown--;
+        }
+        for (let i = 0; i < audioElements.length; i++) {
+          if (motionDetected[i]) {
+            if (audioElements[i].paused) {
+              audioElements[i].play();
+              audioElements[i].loop = true;
+            }
+          } else {
+            if (!audioElements[i].paused) {
+              audioElements[i].pause();
+              audioElements[i].loop = false;
             }
           }
+        }
           
 
           // Update the previous frame data for the area
@@ -146,9 +152,7 @@ navigator.mediaDevices.getUserMedia({ video: true })
     console.error('Error accessing camera', err);
   });
 
-  
-
-// Pause and resume the video stream when the canvas is clicked
+  // Pause and resume the video stream when the canvas is clicked
 /*canvas.addEventListener('click', function () {
   if (video.paused) {
     video.play();
