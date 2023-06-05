@@ -121,7 +121,10 @@ audio doesn't start because of the browser so you start the whole setup by a cli
 
 
 ## Link to website
-Go To [Installation website](https://mojofx.be/?page_id=268/).
+Go To MojoFX page / installation [Main website installation tab](https://mojofx.be/?page_id=268/).
+Go Installation subdomain page [Installation website](https://installation.mojofx.be/index.php/installation/).
+
+
 
 
 
