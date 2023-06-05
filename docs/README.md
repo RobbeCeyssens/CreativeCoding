@@ -10,7 +10,7 @@
 
 ## Images
 
-![This is a alt text.](/public/connect.heic "This is a sample image.")
+![Connect Image.](/public/connect.heic "Connect Image.")
 
 ## CODE
 ### WEBCAM SETUP
@@ -122,7 +122,11 @@ audio doesn't start because of the browser so you start the whole setup by a cli
 
 ## Link to website
 Go To MojoFX page / installation [Main website installation tab](https://mojofx.be/?page_id=268/).
-Go Installation subdomain page [Installation website](https://installation.mojofx.be/index.php/installation/).
+Go To Installation subdomain page [Installation website](https://installation.mojofx.be/index.php/installation/).
+
+## Link to video
+![Video.](/public/thumbnail.jpg "video.")
+Go to video [Installation video](https://youtu.be/b_DPbaLTHhE/).
 
 
 
