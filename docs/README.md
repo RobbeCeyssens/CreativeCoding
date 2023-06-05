@@ -120,7 +120,8 @@ audio doesn't start because of the browser so you start the whole setup by a cli
 
 
 
-
+## Link to website
+Go To [Installation website](https://mojofx.be/?page_id=268/).
 
 
 

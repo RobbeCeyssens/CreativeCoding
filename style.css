@@ -19,32 +19,7 @@ canvas {
   top: 0;
   height: 100%;
   width: calc(100% / 6);
-  /* background-color: rgba(255, 0, 0, 0.5);*/ /*  Update the color for each overlay */
 }
-/*overlay1 {
-  left: 0%;
-}
-#overlay2 {
-  left: 16.6666%;
-  background-color: rgba(99, 245, 240, 0.5);
-}
-#overlay3 {
-  left: 33.3333%;
-  background-color: rgba(255, 205, 108, 0.5);
-}
-#overlay4 {
-  left: 50%;
-  background-color: rgba(138, 127, 225, 0.5);
-}
-#overlay5 {
-  left: 66.6666%;
-  background-color: rgba(154, 245, 148, 0.5);
-}
-#overlay6 {
-  left: 83.3333%;
-  background-color: rgba(223, 171, 224, 0.5);
-}
-*/
 
 #overlay1 {
   left: 0%;
@@ -56,16 +31,21 @@ canvas {
   width: 50%;
   background-color: rgba(99, 245, 240, 0.5);
 }
-/*#overlay3 {
+/* 
+
+#overlay3 {
   left: 50%;
   width: 25%;
   background-color: rgba(255, 205, 108, 0.5);
 }
+
 #overlay4 {
   left: 75%;
   width: 25%;
   background-color: rgba(223, 171, 224, 0.5);
-}*/
+} 
+
+*/
 
 #video
 {

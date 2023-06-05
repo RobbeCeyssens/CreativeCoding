@@ -1,6 +1,4 @@
 import './style.css'
-import * as Tone from 'tone'
-
 
 // Constants for the number of vertical areas and motion threshold
 const NUM_AREAS = 3;
@@ -30,7 +28,6 @@ for (let i = 0; i < motionDetected.length; i++) {
 const loops = [];
 
 function startCode(event){
-Tone.Transport.start();
 // Initialize the video stream
 navigator.mediaDevices.getUserMedia({ video: true })
   .then(function (stream) {
@@ -55,9 +52,6 @@ navigator.mediaDevices.getUserMedia({ video: true })
         prevFrameData[i] = new Uint8ClampedArray(canvasHeight * areaWidth * 4);
         currFrameData[i] = ctx.getImageData(i * areaWidth, 0, areaWidth, canvasHeight).data;
 
-        // Create an audio element for each area and assign an audio file to it
-        //const audio = new Audio(`AUDIO/audio_${i + 1}.mp3`);
-        //audioElements.push(audio);
       }
 
       // Draw the video frames onto the canvas
@@ -92,16 +86,6 @@ navigator.mediaDevices.getUserMedia({ video: true })
             }
           }
           
-          /*audio.addEventListener('ended', function() {
-            // Find the index of the audio element in the array
-            const index = audioElements.indexOf(audio);
-            
-            // Remove the audio element from the array
-            if (index !== -1) {
-              audioElements.splice(index, 1);
-            }
-          });*/
-          
           // Output the area number where motion was detected
           if (cooldown <= 0)
           if (motion > 0) {
@@ -109,11 +93,6 @@ navigator.mediaDevices.getUserMedia({ video: true })
             cooldown = 100;
             console.log(`Motion detected in area ${i + 1}`);
           
-            // create a monophonic synth for each area with motion detected
-            
-          
-            // create a loop for each area with motion detected
-           
   
            } else {
             motionDetected[i] = false;
@@ -152,13 +131,5 @@ navigator.mediaDevices.getUserMedia({ video: true })
     console.error('Error accessing camera', err);
   });
 
-  // Pause and resume the video stream when the canvas is clicked
-/*canvas.addEventListener('click', function () {
-  if (video.paused) {
-    video.play();
-  } else {
-    video.pause();
-  }
-})*/;
 }
 document.addEventListener("click", startCode);
