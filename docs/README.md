@@ -12,6 +12,10 @@
 
 ![Connect Image.](/public/connect.heic "Connect Image.")
 
+## Frame
+![Connect Image.](/public/pannel.heic "Connect Image.")
+You can create any frame you want based on the theme you want to put it in and the height, mine is 120cm on 180cm because I wanted a good height and the cut out depends on your screen size.
+
 ## CODE
 ### WEBCAM SETUP
 
@@ -46,7 +50,7 @@
 #### VARIABLE SETUP 
 ```Javascript
 // Constants for the number of vertical areas and motion threshold
-const NUM_AREAS = 3;
+const NUM_AREAS = 4;
 const MOTION_THRESHOLD = 300;
 
 // Variables for the canvas, context, and video
@@ -106,10 +110,42 @@ let motionDetected = new Array(NUM_AREAS).fill(false);
             }
           }
 ```
+Make sure the max number = the amount of samples you want and areas, 
+otherwise the samples will get lost in areas that are not visible.
 
 ### AUDIO INPUT
 You can choose whatever audio sample you want.
 put audio in folder and direct in js file like example above "AUDIO/sample.mp3"
+
+#### Make the areas blink when movement is detected
+```Javascript
+audioElements.forEach((element, i) => {
+            if (motionDetected[i] && element.paused) {
+              switch (i) {
+                case 0:
+                  document.getElementById(`overlay4`).classList.add('blink');
+                  break;
+                case 1:
+                  document.getElementById(`overlay3`).classList.add('blink');
+                  break;
+                case 2:
+                  document.getElementById(`overlay2`).classList.add('blink');
+                  break;
+                case 3:
+                  document.getElementById(`overlay1`).classList.add('blink');
+                  break;
+              }
+              element.play();
+              element.loop = true;
+            } else if (!element.paused) {
+              setTimeout(function() {
+                document.getElementById(`overlay${i + 1}`).classList.remove('blink');
+                element.pause();
+                element.loop = false;
+              }, 2000);
+            }
+          })
+```
 
 #### Start at click
 audio doesn't start because of the browser so you start the whole setup by a click on the browser window.
