@@ -162,7 +162,7 @@ Go To Installation subdomain page [Installation website](https://installation.mo
 
 ## Link to video
 ![Video.](/public/thumbnail.jpg "video.")
-Go to video [Installation video](https://youtu.be/b_DPbaLTHhE/).
+Go to video [Installation video](https://youtu.be/C72E0kIKf1c/).
 
 
 
