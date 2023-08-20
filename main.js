@@ -25,8 +25,9 @@ navigator.mediaDevices.getUserMedia({ video: true })
   .then(function (stream) {
     let audioElements = [];
     for (let i = 0; i < NUM_AREAS; i++) {
-      const audio = new Audio(`AUDIO/sound_${i + 1}.mp3`);
+      const audio = new Audio(`AUDIO/Sample_${i + 1}.wav`);
       audioElements.push(audio);
+      audio.preload = 'auto';
     }
 
     // Set the video source to the stream
